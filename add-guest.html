@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi Tamu - Hotel Admin Panel</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-hotel text-blue-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-semibold text-gray-800">Hotel Admin Panel</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="dashboard.html" class="flex items-center px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        Dashboard
+                    </a>
+                    <a href="add-guest.html" class="flex items-center px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                        <i class="fas fa-user-plus mr-2"></i>
+                        Registrasi Tamu
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form Section -->
+    <div class="min-h-screen pt-16 pb-12">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                    <i class="fas fa-user-plus text-blue-600 mr-2"></i>
+                    Formulir Registrasi Tamu
+                </h2>
+
+                <form id="guestForm" class="space-y-6">
+                    <!-- Nama Tamu -->
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nama Tamu</label>
+                        <input type="text" id="name" name="name" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <p class="mt-1 text-sm text-red-600 hidden" id="nameError"></p>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" name="email" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <p class="mt-1 text-sm text-red-600 hidden" id="emailError"></p>
+                    </div>
+
+                    <!-- Nomor Telepon -->
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700">Nomor Telepon</label>
+                        <input type="tel" id="phone" name="phone" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <p class="mt-1 text-sm text-red-600 hidden" id="phoneError"></p>
+                    </div>
+
+                    <!-- Tanggal Check-in dan Check-out -->
+                    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                        <div>
+                            <label for="checkIn" class="block text-sm font-medium text-gray-700">Tanggal Check-In</label>
+                            <input type="date" id="checkIn" name="checkIn" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <p class="mt-1 text-sm text-red-600 hidden" id="checkInError"></p>
+                        </div>
+                        <div>
+                            <label for="checkOut" class="block text-sm font-medium text-gray-700">Tanggal Check-Out</label>
+                            <input type="date" id="checkOut" name="checkOut" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <p class="mt-1 text-sm text-red-600 hidden" id="checkOutError"></p>
+                        </div>
+                    </div>
+
+                    <!-- Jenis Kamar -->
+                    <div>
+                        <label for="roomType" class="block text-sm font-medium text-gray-700">Jenis Kamar</label>
+                        <select id="roomType" name="roomType" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="">Pilih Jenis Kamar</option>
+                            <option value="single">Single Room</option>
+                            <option value="double">Double Room</option>
+                            <option value="suite">Suite Room</option>
+                            <option value="deluxe">Deluxe Room</option>
+                        </select>
+                        <p class="mt-1 text-sm text-red-600 hidden" id="roomTypeError"></p>
+                    </div>
+
+                    <!-- Catatan Tambahan -->
+                    <div>
+                        <label for="notes" class="block text-sm font-medium text-gray-700">Catatan Tambahan</label>
+                        <textarea id="notes" name="notes" rows="3"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button type="submit"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <i class="fas fa-save mr-2"></i>
+                            Simpan Data
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed z-50 inset-0 hidden">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75"></div>
+            <div class="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-sm sm:w-full sm:p-6">
+                <div>
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                        <i class="fas fa-check text-green-600 text-xl"></i>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-5">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Data Berhasil Disimpan!</h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">Data tamu telah berhasil disimpan. Anda akan diarahkan ke halaman dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 sm:mt-6">
+                    <button type="button" onclick="window.location.href='dashboard.html'"
+                        class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">
+                        Lihat Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('guestForm');
+            const successModal = document.getElementById('successModal');
+
+            // Set minimum date for check-in to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('checkIn').min = today;
+
+            // Update check-out minimum date when check-in date changes
+            document.getElementById('checkIn').addEventListener('change', function(e) {
+                document.getElementById('checkOut').min = e.target.value;
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset error messages
+                document.querySelectorAll('.text-red-600').forEach(el => el.classList.add('hidden'));
+                
+                // Validate form
+                let isValid = true;
+                const formData = new FormData(form);
+                const guestData = Object.fromEntries(formData.entries());
+
+                // Basic validation
+                if (!guestData.name) {
+                    document.getElementById('nameError').textContent = 'Nama tamu harus diisi';
+                    document.getElementById('nameError').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!guestData.email || !/\S+@\S+\.\S+/.test(guestData.email)) {
+                    document.getElementById('emailError').textContent = 'Email tidak valid';
+                    document.getElementById('emailError').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!guestData.phone || !/^\d{10,12}$/.test(guestData.phone.replace(/[^0-9]/g, ''))) {
+                    document.getElementById('phoneError').textContent = 'Nomor telepon tidak valid';
+                    document.getElementById('phoneError').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!guestData.checkIn) {
+                    document.getElementById('checkInError').textContent = 'Tanggal check-in harus diisi';
+                    document.getElementById('checkInError').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!guestData.checkOut) {
+                    document.getElementById('checkOutError').textContent = 'Tanggal check-out harus diisi';
+                    document.getElementById('checkOutError').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (!guestData.roomType) {
+                    document.getElementById('roomTypeError').textContent = 'Jenis kamar harus dipilih';
+                    document.getElementById('roomTypeError').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    // Save to localStorage
+                    const guests = JSON.parse(localStorage.getItem('hotelGuests') || '[]');
+                    guests.push({
+                        id: Date.now(),
+                        ...guestData,
+                        createdAt: new Date().toISOString()
+                    });
+                    localStorage.setItem('hotelGuests', JSON.stringify(guests));
+
+                    // Show success modal
+                    successModal.classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
